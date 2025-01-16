@@ -9,7 +9,7 @@ class User(AbstactUser):
     phone_number = PhoneNumberField(unique=True, null=False, blank=False)
 
     def __str__(self):
-        return self.phone_number
+        return f"{self.phone_number} - {self.username}"
 
 
 class OTP(models.Model):
