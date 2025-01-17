@@ -47,7 +47,7 @@ class AdvertisementView(APIView):
         pk = request.data.get("id")
         advertisement = get_object_or_404(Advertisement, pk=pk)
         advertisement.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"message": "Advertisement deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
 class AllAdvertisementsView(APIView):
@@ -59,7 +59,7 @@ class AllAdvertisementsView(APIView):
         price = request.query_params.get("price")
         title = request.query_params.get("title")
 
-        advertisements = Advertisement.objects.filter(is_active=True)
+        advertisements = Advertisement.objects.filter()
         if category:
             advertisements = advertisements.filter(category=category)
         if city:
